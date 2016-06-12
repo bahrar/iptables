@@ -1,0 +1,10 @@
+  - name: "ensure iptables accepts {{comment}} ports {{ports}} for protocol {{protocol}}"
+    lineinfile:
+      dest=/etc/sysconfig/iptables
+      backup=yes
+      state=present
+      regexp="^-A INPUT.*{{protocol}}.*--dport {{item}} .*ACCEPT"
+      insertafter="^:OUTPUT" line="-A INPUT -p {{protocol}} -m state --state NEW -m {{protocol}} --dport {{item}} -m comment --comment \"{{comment}}\" -j ACCEPT"
+    notify: restart iptables
+    with_items: ports
+    when: ports
