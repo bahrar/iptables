@@ -3,6 +3,7 @@ iptables
 
 Le rôle iptables permet d'authoriser la communication avec les machines externes en utilisant le protocole et via les ports passés en paramètres.
 
+Version: v0.2
 
 paramètres
 ------------
